@@ -2258,7 +2258,7 @@ const callSendAPI = (sender_psid, response) => {
 
   return new Promise(resolve => {
     request({
-      "uri": "https://graph.facebook.com/v2.6/me/messages",
+      "uri": "https://graph.facebook.com/v8.0/me/messages",
       "qs": {
         "access_token": PAGE_ACCESS_TOKEN
       },
@@ -2290,7 +2290,7 @@ const setupGetStartedButton = (res) => {
   };
 
   request({
-      url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
+      url: 'https://graph.facebook.com/v8.0/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -2416,7 +2416,7 @@ const whitelistDomains = (res) => {
     ]
   };
   request({
-      url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
+      url: 'https://graph.facebook.com/v8.0/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
