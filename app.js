@@ -2235,7 +2235,7 @@ const sfThreeHowTo = (sender_psid) => {
 const getUserProfile = (sender_psid) => {
   return new Promise(resolve => {
     request({
-      "uri": "https://graph.facebook.com/" + sender_psid + "?fields=first_name,last_name,profile_pic&access_token=EAAlEhr6zR98BAMDtTpHYVJZBo60fKlc0buAhPYq2pCFMS1NOFFb8SKbs5H8gq6xXuI7xsp7jObM63FLLwIGZC2dsYtzeC7G0QElYOBeBuTtJ8D9uhQ5Hzu20Gj0nTDrFJbZC0nssueQsXRzpeCBZChfmj3DdqxZAsxfSzZCL2cDZBM22qijNTMBTXIxQP0ph48ZD",
+      "uri": "https://graph.facebook.com/" + sender_psid + "?fields=first_name,last_name,profile_pic&access_token=EAANZAPEZBpu9MBAP7PVoOJ79qdpjki1IR4AUz0XBn6zcDnbhpXjg67qVfkh7TWtqwXMRkdowK037ZAlPYf7SUsnmmWcIGEhTqZAOjLvZApI8zI3P3lUJZAMyWeeByXVrjpBtROlZAsE9TQ10O3pKBX2FQOPzOsY35sTiOSeJ7IDNPJAXAZAFxvN5",
       "method": "GET"
     }, (err, res, body) => {
       if (!err) {
@@ -2389,7 +2389,7 @@ const removePersistentMenu = (res) => {
     ]
   };
   request({
-      url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
+      url: 'https://graph.facebook.com/v8.0/me/messenger_profile?access_token=' + PAGE_ACCESS_TOKEN,
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
