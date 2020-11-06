@@ -1,0 +1,142 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <h1>Add Product</h1>
+  <p><a href="../../admin/products">View Products</a></p>
+  
+
+  <form id="form" enctype="multipart/form-data" action="../../admin/saveproduct" method="post">    
+    
+
+    <label for="name">Name</label><br>
+    <input type="text" name="name"/><br>
+
+    <label for="description">Description</label><br>
+    <textarea name="description" rows="4" cols="50"></textarea><br>   
+
+
+    <label for="price">Price</label><br>
+    <input type="text" name="price"/><br>    
+
+    <label for="sku">SKU</label><br>
+    <input type="text" name="sku"/><br> 
+
+    <div class="form-group">
+    <label for="file">Image</label>
+    <input type="file" name="file" />
+    </div> 
+
+  
+
+    
+    <input type="submit" name="submit"/>
+
+  </form>
+
+ 
+  
+  
+  </body>
+
+</html>
+ -->
+<%- include('partials/header.ejs') %>
+<main class="app-content">
+  <div class="app-title">
+      <div>
+          <h1>
+              <i class="icofont-list"></i>
+              Add Product
+          </h1>
+      </div>
+      <ul class="app-breadcrumb breadcrumb side">
+          <a class="btn btn-outline-primary" href="../../admin/products">
+              <i class="icofont-double-left"></i>
+          </a>
+      </ul>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="tile">
+              <div class="tile-body">
+                  <form action="../../admin/saveproduct" enctype="multipart/form-data" id="form" method="post">
+                      <!-- Photo Start -->
+                      <div class="form-group row">
+                          <label class="col-sm-2 col-form-label" for="photo_id">
+                              Photo
+                          </label>
+                          <div class="col-sm-10">
+                              <input id="photo_id" name="file" type="file">
+                              </input>
+                          </div>
+                      </div>
+                      <!-- Photo End -->
+                      <!-- Name start -->
+                      <div class="form-group row">
+                          <label class="col-sm-2 col-form-label" for="name_id">
+                              Name
+                          </label>
+                          <div class="col-sm-10">
+                              <input class="form-control" id="name_id" name="name" type="text">
+                              </input>
+                          </div>
+                      </div>
+                      <!-- Name End -->
+                      <!-- Price Start -->
+                      <div class="form-group row">
+                          <label class="col-sm-2 col-form-label" for="price_id">
+                              Price
+                          </label>
+                          <div class="col-sm-10">
+                              <input class="form-control" id="price_id" name="price" type="number">
+                              </input>
+                          </div>
+                      </div>
+                      <!-- Price End -->
+                      <!--Description start-->
+                      <div class="form-group row">
+                          <label class="col-sm-2 col-form-label" for="description">
+                              Description
+                          </label>
+                          <div class="col-sm-10">
+                              <textarea class="form-control" cols="10" name="description" rows="3">
+                              </textarea>
+                          </div>
+                      </div>
+                      <!--Description end-->
+                      <!-- Category Start -->
+                      <div class="form-group row">
+                        <label for="categoryName" class="col-sm-2 col-form-label"> Category </label>
+                          <div class="col-sm-10">
+                              <select class="form-control select2 form-control-lg" name="category">
+                                <option> Choose Category </option>
+                                <option value="Breakfast Food"> Breakfast Food </option>
+                                <option value="Lunch Food"> Lunch Food </option>
+                                <option value="Chinese Food"> Chinese Food </option>
+                                <option value="Juice"> Juice </option>
+                              </select>
+                          </div>
+                      </div>
+                      <!-- Category End -->
+                      <div class="form-group row">
+                        <div class="col-sm-2"></div>
+                          <div class="col-sm-10">
+                              <button class="btn btn-primary" type="submit">
+                                  <i class="icofont-save"></i>
+                                  Save
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+<%- include('partials/footer.ejs') %>  

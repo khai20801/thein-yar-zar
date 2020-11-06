@@ -1,0 +1,239 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sale Record</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <h1>Order: <%=data.ref %></h1>
+
+  <form id="form" method="post" action="../update_order">
+  <div>
+    <label for="ref">Reference</label>
+    <input type="text" name="ref" value="<%= data.ref %>">    
+  </div>
+
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<%= data.name %>">    
+  </div>
+
+  <div>
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" value="<%= data.phone %>">    
+  </div>
+
+  <div>
+    <label for="address">Address</label>
+    <input type="text" name="address" value="<%= data.address %>">    
+  </div>
+
+  <div>
+    <label for="items">Items</label>
+    <input type="text" name="items" value="<%= data.address %>">    
+  </div>
+
+  <div>
+    <label for="sub_total">Sub Total</label>
+    <input type="text" name="sub_total" value="<%= data.sub_total %>">    
+  </div>
+
+  <div>
+    <label for="discount">Discount</label>
+    <input type="text" name="discount" value="<%= data.discount %>">    
+  </div>
+
+  <div>
+    <label for="total">Total</label>
+    <input type="text" name="total" value="<%= data.total %>">    
+  </div>
+
+  <div>
+    <label for="payment_type">Payment Type</label>
+    <input type="text" name="payment_type" value="<%= data.payment_type %>">    
+  </div> 
+
+  
+  <div class="form-group">
+    <label for="status">Status:</label>
+  <select name="status" id="status">    
+    <option value="pending" 
+    <%if(data.status == "pending"){%>
+        <%="selected"%>
+    <%}%>
+    >Pending</option>
+    <option value="processing"
+    <%if(data.status == "processing"){%>
+        <%="selected"%>
+    <%}%>
+    >Processing</option>
+    <option value="shipped"
+    <%if(data.status == "shipped"){%>
+        <%="selected"%>
+    <%}%>
+    >Shipped</option>
+    <option value="shipped"
+    <%if(data.status == "completed"){%>
+        <%="selected"%>
+    <%}%>
+    >Completed</option>   
+  </select>   
+  </div>
+
+
+  <div class="form-group">
+    <label for="name">Comment</label>
+    <textarea name="comment" rows="4" cols="50"></textarea>      
+  </div>
+
+  
+  <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
+  
+  <input type="submit" value="Submit"> 
+  </form>
+ 
+ 
+
+  </body>
+
+</html> -->
+<%- include('partials/header.ejs') %>
+    <div class="app-title">
+        <div>
+            <h1> <i class="icofont-list"></i>Order:
+                <%=data.ref %>
+            </h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <a href="../../admin/orders" class="btn btn-outline-primary">
+                <i class="icofont-double-left"></i>
+            </a>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <form id="form" method="post" action="../update_order">
+                        <!--Reference No start-->
+                        <div class="form-group row">
+                            <label for="ref_id" class="col-sm-2 col-form-label"> Reference No </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ref_id" name="ref" value="<%= data.ref %>" readonly>
+                            </div>
+                        </div>
+                        <!--Reference No end-->
+                        <!--Name start-->
+                        <div class="form-group row">
+                            <label for="name_id" class="col-sm-2 col-form-label"> Name </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name_id" name="name" value="<%= data.name %>" readonly>
+                            </div>
+                        </div>
+                        <!--Name end-->
+                        <!--Phone start-->
+                        <div class="form-group row">
+                            <label for="phone_id" class="col-sm-2 col-form-label"> Phone </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="phone_id" name="phone" value="<%= data.phone %>" readonly>
+                            </div>
+                        </div>
+                        <!--Phone end-->
+                        <!--Address start-->
+                        <div class="form-group row">
+                            <label for="address_id" class="col-sm-2 col-form-label"> Address </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address_id" name="address" value="<%= data.address %>" readonly>
+                            </div>
+                        </div>
+                        <!--Address end-->
+                        <!--Items start-->
+                        <div class="form-group row">
+                            <label for="items_id" class="col-sm-2 col-form-label"> Items </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="items_id" name="items" value="<%= data.items %>" readonly>
+                            </div>
+                        </div>
+                        <!--Items end-->
+                        <!--Sub Total start-->
+                        <div class="form-group row">
+                            <label for="subtotal_id" class="col-sm-2 col-form-label"> Sub Total </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="subtotal_id" name="sub_total" value="<%= data.sub_total %>" readonly>
+                            </div>
+                        </div>
+                        <!--Sub Total end-->
+                        <!--Discount start-->
+                        <div class="form-group row">
+                            <label for="discount_id" class="col-sm-2 col-form-label"> Discount </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="discount_id" name="discount" value="<%= data.discount %>" readonly>
+                            </div>
+                        </div>
+                        <!--Discount end-->
+                        <!--Total start-->
+                        <div class="form-group row">
+                            <label for="total_id" class="col-sm-2 col-form-label"> Total </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="total_id" name="total" value="<%= data.total %>" readonly>
+                            </div>
+                        </div>
+                        <!--Total end-->
+                        <!--Payment Type start-->
+                        <div class="form-group row">
+                            <label for="payment_id" class="col-sm-2 col-form-label"> Payment Type </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="payment_id" name="payment_type" value="<%= data.payment_type %>" readonly>
+                            </div>
+                        </div>
+                        <!--Payment Type end-->
+                        <!--Status start-->
+                        <div class="form-group row">
+                            <label for="status_id" class="col-sm-2 col-form-label"> Status </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="status" id="status_id">
+                                    <option value="pending" <%if(data.status=="pending" ){%>
+                                        <%="selected"%>
+                                        <%}%>
+                                        >Pending</option>
+                                    <option value="processing" <%if(data.status=="processing" ){%>
+                                        <%="selected"%>
+                                        <%}%>
+                                        >Processing</option>
+                                    <option value="shipped" <%if(data.status=="shipped" ){%>
+                                        <%="selected"%>
+                                        <%}%>
+                                        >Shipped</option>
+                                    <option value="shipped" <%if(data.status=="completed" ){%>
+                                        <%="selected"%>
+                                        <%}%>
+                                        >Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Status end-->
+                        <!--Comment start-->
+                        <div class="form-group row">
+                            <label for="comment" class="col-sm-2 col-form-label"> Comment </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="comment" id="" cols="10" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <!--Comment end-->
+                        <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="icofont-save"></i>
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('partials/footer.ejs') %>

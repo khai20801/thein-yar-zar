@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopplus</title>
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- iconfont CSS -->
+    <link rel="stylesheet" type="text/css" href="/icon/icofont/icofont.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Products</h1>
+        <div class="row my-3 ml-4">
+            <div class="col-md-12">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Order by Category
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="../shop">All</a>
+                        <a class="dropdown-item" href="../breakfast_food">Breakfast Food</a>
+                        <a class="dropdown-item" href="../lunch_food">Lunch Food</a>
+                        <a class="dropdown-item" href="../chinese_food">Chinese Food</a>
+                        <a class="dropdown-item" href="../juice">Juice</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ml-4 mb-3 row">
+            <% data.forEach(function(product){ %>
+            <div class="col-md-12 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= product.image %>" class="card-img-top" alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= product.name %>
+                        </h5>
+                        <p class="card-text">
+                            <%= product.description %>
+                        </p>
+                        <p class="card-text">
+                            <%= product.price %> Ks</p>
+                        <form action="../cart" method="post">
+                            <input type="hidden" name="item_id" value="<%= product.id %>" />
+                            <input type="hidden" name="item_name" value="<%= product.name %>" />
+                            <input type="hidden" name="item_price" value="<%= product.price %>" />
+                            qty: <input type="number" name="item_qty" min="1" value="1" style="width:50px;" />
+                            <button class="mb-1 btn btn-primary btn-sm" type="submit">
+                                <i class="icofont-plus"></i> Add
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+    <!-- scripts -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
