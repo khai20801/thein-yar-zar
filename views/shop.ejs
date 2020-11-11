@@ -9,11 +9,18 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!-- iconfont CSS -->
     <link rel="stylesheet" type="text/css" href="/icon/icofont/icofont.min.css">
+    <style>
+        .border_left {
+            border-color: #408BEA;
+            border-left: solid 5px #408bea;
+            padding-left: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="text-center">Products</h1>
+    <div class="container mt-3">
+        <h1 class="border_left">All Foods and Drinks</h1>
         <div class="row my-3 ml-4">
             <div class="col-md-12">
                 <div class="dropdown">
@@ -48,6 +55,7 @@
                             <input type="hidden" name="item_id" value="<%= product.id %>" />
                             <input type="hidden" name="item_name" value="<%= product.name %>" />
                             <input type="hidden" name="item_price" value="<%= product.price %>" />
+                            <input type="hidden" name="item_img" value="<%= product.image %>" />
                             qty: <input type="number" name="item_qty" min="1" value="1" style="width:50px;" />
                             <button class="mb-1 btn btn-primary btn-sm" type="submit">
                                 <i class="icofont-plus"></i> Add

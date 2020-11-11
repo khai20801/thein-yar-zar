@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>Cart</title>
@@ -54,6 +54,117 @@
 	
 
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- Main CSS-->
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<!-- iconfont CSS -->
+	<link rel="stylesheet" type="text/css" href="/icon/icofont/icofont.min.css">
+	<style>
+		.border_left {
+			border-color: #408BEA;
+			border-left: solid 5px #408bea;
+			padding-left: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container mt-5">
+		<h2 class="border_left"> Shopping Cart </h2>
+		<div class="row mt-3">
+			<div class="col-6">
+				<a href="../shop" class="btn mainfullbtncolor btn-outline-secondary float-left">
+					<i class="icofont-shopping-cart"></i>
+					Shop
+				</a>
+				<!-- <p>Remaining points</p> -->
+			</div>
+			<div class="col-6">
+				<a href="../emptycart" class="btn mainfullbtncolor btn-outline-danger float-right">
+					<i class="icofont-ui-delete"></i>
+					Empty Cart
+				</a>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" class="text-center">Name</th>
+							<th scope="col">Qty</th>
+							<th scope="col">Price</th>
+							<th scope="col">Subtotal</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% cart.forEach(function(item){ %>
+						<tr>
+							<td>
+								<div class="d-flex no-block align-items-center">
+									<div class="mr-3">
+										<img src="<%= item.img %>" alt="user" class="rounded-circle" width="50"
+											height="45" />
+									</div>
+
+									<div class="">
+										<h6 class="text-dark mb-0 font-10 font-weight-medium"> <%= item.name %> </h6>
+									</div>
+								</div>
+							</td>
+							<td><%= item.qty %></td>
+							<td><%= item.price %> Ks</td>
+							<td><%= item.total %> Ks</td>
+						</tr>
+						<% }); %>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="2" class="text-right">
+								<div class="d-inline-flex">
+									<h5>Points : <span class="badge badge-pill badge-info"><%= points %></span></h5>
+									<% if (points == 0 || cart_total == 0) { %>
+									<form action="../pointdiscount" method="post">
+										<button disabled class="btn btn-success btn-sm ml-3"><i class="icofont-check-circled"></i>Use</button>
+										<!-- <input type="submit" name="submit" value="Use Points" disabled /> -->
+									</form>
+
+									<%} else { %>
+									<form action="../pointdiscount" method="post">
+										<input type="hidden" name="points" value="<%= points %>" />
+										<button class="btn btn-success btn-sm ml-3"><i class="icofont-check-circled"></i>Use</button>
+									</form>
+									<% } %>
+								</div>
+							</td>
+							<td class="text-right">Discount</td>
+							<td><%= discount %> Ks</td>
+						</tr>
+						<tr>
+							<td colspan="3" class="text-right">Total</td>
+							<td><%= cart_total %> Ks</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="text-right"><a href="../order" class="btn btn-primary">Check Out</a>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- scripts -->
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+
 </html>
-
-

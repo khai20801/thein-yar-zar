@@ -293,9 +293,9 @@ app.get('/admin/orders', async (req, res) => {
             order = doc.data();
             order.doc_id = doc.id;
 
-            let d = new Date(doc.data().created_on._seconds);
-            d = d.toString();
-            order.created_on = d;
+            // let d = new Date(doc.data().created_on._seconds);
+            // d = d.toString();
+            // order.created_on = d;
 
             pendingOrders.push(order);
 
@@ -668,6 +668,8 @@ app.post('/cart', function(req, res) {
     let item = {};
     item.id = req.body.item_id;
     item.name = req.body.item_name;
+    item.img = req.body.item_img;
+    item.description = req.body.item_description;
     item.price = parseInt(req.body.item_price);
     item.qty = parseInt(req.body.item_qty);
     item.total = item.price * item.qty;
@@ -801,13 +803,13 @@ app.get('/order', function(req, res) {
 });
 
 app.post('/order', function(req, res) {
-    let today = new Date();
-    // var dateObj = new Date();
-    // var month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
-    // var date = ('0' + dateObj.getDate()).slice(-2);
-    // var year = dateObj.getFullYear();
-    // var shortDate = year + '/' + month + '/' + date;
-    // alert(shortDate);
+    // let today = new Date();
+
+    let dateObj = new Date();
+    let month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+    let date = ('0' + dateObj.getDate()).slice(-2);
+    let year = dateObj.getFullYear();
+    let orderDate = date + '/' + month + '/' + year;
 
 
     let data = {
@@ -820,7 +822,7 @@ app.post('/order', function(req, res) {
         total: parseInt(req.body.total),
         payment_type: req.body.payment_type,
         ref: generateRandom(6),
-        created_on: today,
+        orderDate: orderDate,
         status: "pending",
         comment: "",
     }
