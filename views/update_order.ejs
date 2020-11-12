@@ -203,14 +203,14 @@
                                         <%="selected"%>
                                         <%}%>
                                         >Processing</option>
-                                    <option value="shipped" <%if(data.status=="shipped" ){%>
-                                        <%="selected"%>
-                                        <%}%>
-                                        >Shipped</option>
-                                    <option value="shipped" <%if(data.status=="completed" ){%>
+                                    <option value="completed" <%if(data.status=="completed" ){%>
                                         <%="selected"%>
                                         <%}%>
                                         >Completed</option>
+                                    <option value="canceled" <%if(data.status=="canceled" ){%>
+                                        <%="selected"%>
+                                        <%}%>
+                                        >Canceled</option>
                                 </select>
                             </div>
                         </div>
