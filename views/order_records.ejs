@@ -65,14 +65,35 @@
                                                 <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
                                                     <i class="icofont-info"></i>
                                                 </a>
-                                            
-                                                <a href="#" class="btn btn-outline-success">
-                                                    <i class="icofont-ui-check"></i>
-                                                </a>
+                                                <!-- processing order button -->
+                                                <form class="d-inline-block" onsubmit="return confirm('Are you sure want to process?')" method="post" action="update_order_process">
 
-                                                <a href="#" class="btn btn-outline-danger">
-                                                    <i class="icofont-close"></i>
-                                                </a>
+                                                    <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
+
+                                                    <button class="btn btn-outline-secondary">
+                                                        <i class="icofont-recycle"></i>
+                                                    </button>
+
+                                                </form>
+
+                                                <!-- completed order button -->
+                                                <form class="d-inline-block" onsubmit="return confirm('Are you sure want to complete?')" method="POST" action="update_order_complete">
+
+                                                    <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
+
+                                                    <button class="btn btn-outline-success">
+                                                        <i class="icofont-ui-check"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- canceled order button -->
+                                                <form class="d-inline-block" onsubmit="return confirm('Are you sure want to cancel?')" method="POST" action="update_order_cancel">
+
+                                                    <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
+
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="icofont-close"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         <% }); %>
@@ -115,6 +136,9 @@
                                                 <%= order.phone %>
                                             </td>
                                             <td>
+                                                <%= order.orderDate %>
+                                            </td>
+                                            <td>
                                                 <%= order.status %>
                                             </td>
                                             <td>
@@ -122,13 +146,25 @@
                                                     <i class="icofont-info"></i>
                                                 </a>
                                             
-                                                <a href="#" class="btn btn-outline-success">
-                                                    <i class="icofont-ui-check"></i>
-                                                </a>
+                                                <!-- completed order button -->
+                                                <form class="d-inline-block" onsubmit="return confirm('Are you sure want to complete?')" method="POST" action="update_order_complete">
 
-                                                <a href="#" class="btn btn-outline-danger">
-                                                    <i class="icofont-close"></i>
-                                                </a>
+                                                    <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
+
+                                                    <button class="btn btn-outline-success">
+                                                        <i class="icofont-ui-check"></i>
+                                                    </button>
+                                                </form>
+
+                                                <!-- canceled order button -->
+                                                <form class="d-inline-block" onsubmit="return confirm('Are you sure want to cancel?')" method="POST" action="update_order_cancel">
+
+                                                    <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
+
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="icofont-close"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         <% }); %>
@@ -171,7 +207,7 @@
                                                 <%= order.phone %>
                                             </td>
                                             <td>
-                                                <%= order.date %>
+                                                <%= order.orderDate %>
                                             </td>
                                             <td>
                                                 <%= order.status %>
@@ -179,14 +215,6 @@
                                             <td>
                                                 <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
                                                     <i class="icofont-info"></i>
-                                                </a>
-                                            
-                                                <a href="#" class="btn btn-outline-success">
-                                                    <i class="icofont-ui-check"></i>
-                                                </a>
-
-                                                <a href="#" class="btn btn-outline-danger">
-                                                    <i class="icofont-close"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -230,7 +258,7 @@
                                                 <%= order.phone %>
                                             </td>
                                             <td>
-                                                <%= order.date %>
+                                                <%= order.orderDate %>
                                             </td>
                                             <td>
                                                 <%= order.status %>
@@ -240,13 +268,15 @@
                                                     <i class="icofont-info"></i>
                                                 </a>
                                             
-                                                <a href="#" class="btn btn-outline-success">
-                                                    <i class="icofont-ui-check"></i>
-                                                </a>
+                                                <!-- delete order button -->
+                                                <form class="d-inline-block" onsubmit="return confirm('Are you sure want to delete?')" method="POST" action="deleteOrder">
 
-                                                <a href="#" class="btn btn-outline-danger">
-                                                    <i class="icofont-close"></i>
-                                                </a>
+                                                    <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
+
+                                                    <button class="btn btn-danger">
+                                                        <i class="icofont-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         <% }); %>

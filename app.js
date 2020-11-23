@@ -147,13 +147,13 @@ app.get('/', function(req, res) {
 app.post('/login', function(req, res) {
     sess = req.session;
 
-    let username = req.body.username;
+    let email = req.body.email;
     let password = req.body.password;
 
-    if (username == 'admin' && password == process.env.ADMIN_PW) {
-        sess.username = 'admin';
+    if (email == 'admin@gmail.com' && password == process.env.ADMIN_PW) {
+        sess.email = 'admin@gmail.com';
         sess.login = true;
-        res.redirect('/admin/products');
+        res.redirect('/admin/orders');
     } else {
         res.send('login failed');
     }
@@ -163,7 +163,7 @@ app.get('/login', function(req, res) {
     sess = req.session;
 
     if (sess.login) {
-        res.redirect('/admin/products');
+        res.redirect('/admin/orders');
     } else {
         res.render('login.ejs');
     }
@@ -253,6 +253,43 @@ app.post('/admin/saveproduct', upload.single('file'), function(req, res) {
         }).catch((error) => {
             console.error(error);
         });
+    }
+});
+
+// customers
+app.get('/admin/customers', async (req, res) => {
+
+    const usersRef = db.collection('users').orderBy('created_on', 'desc');
+    const snapshot = await usersRef.get();
+
+    if (snapshot.empty) {
+        res.send('no data');
+    } else {
+        let data = [];
+
+        snapshot.forEach(doc => {
+            let user = {};
+
+            user = doc.data();
+            user.doc_id = doc.id;
+
+            let d = new Date(doc.data().created_on._seconds);
+            d = d.toString();
+            user.created_on = d;
+
+
+            data.push(user);
+
+        });
+        sess = req.session;
+        console.log('SESS:', sess);
+        if (sess.login) {
+            res.render('customers.ejs', {
+                data: data
+            });
+        } else {
+            res.send('you are not authorized to view this page');
+        }
     }
 });
 
@@ -393,29 +430,59 @@ app.get('/admin/update_order/:doc_id', async function(req, res) {
     }
 });
 
+// Processing order
+app.post('/admin/update_order_process', function(req, res) {
 
-app.post('/admin/update_order', function(req, res) {
-
-    let data = {
-        ref: req.body.ref,
-        name: req.body.name,
-        phone: req.body.phone,
-        address: req.body.address,
-        items: req.body.items,
-        sub_total: req.body.sub_total,
-        discount: req.body.discount,
-        total: req.body.total,
-        payment_type: req.body.payment_type,
-        status: req.body.status,
-        comment: req.body.comment,
-    }
+    // let data = {
+    //     status: "processing",
+    // }
 
     db.collection('orders').doc(req.body.doc_id)
-        .update(data).then(() => {
+        .update({status: "processing"}).then(() => {
             res.redirect('/admin/orders');
         }).catch((err) => console.log('ERROR:', error));
 });
 
+// Completed order
+app.post('/admin/update_order_complete', function(req, res) {
+
+    // let data = {
+    //     status: "processing",
+    // }
+
+    db.collection('orders').doc(req.body.doc_id)
+        .update({status: "completed"}).then(() => {
+            res.redirect('/admin/orders');
+        }).catch((err) => console.log('ERROR:', error));
+});
+
+// Canceled order
+
+app.post('/admin/update_order_cancel', function(req, res) {
+
+    // let data = {
+    //     status: "processing",
+    // }
+
+    db.collection('orders').doc(req.body.doc_id)
+        .update({status: "canceled"}).then(() => {
+            res.redirect('/admin/orders');
+        }).catch((err) => console.log('ERROR:', error));
+});
+
+// Delete order
+app.post('/admin/deleteOrder', function(req,res){
+    db.collection('orders').doc(req.body.doc_id).delete().then(() => {
+        res.redirect('/admin/orders');
+    }).catch((err) => console.log('ERROR:', error));
+});
+
+// Delete product
+app.post('/admin/deleteProduct', function(req,res){
+    db.collection('products').doc(req.body.doc_id).delete().then(() => {
+        res.redirect('/admin/products');
+    }).catch((err) => console.log('ERROR:', error));
+});
 
 //route url
 // ALL CATEGORIES

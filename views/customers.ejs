@@ -1,0 +1,52 @@
+<%- include('partials/header.ejs') %>
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1> <i class="icofont-list"></i> Customer Lists </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                                <tr>
+                                    <th> No </th>
+                                    <th> Name </th>
+                                    <th> Phone </th>
+                                    <th> Address </th>
+                                    <th> Points </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% var i = 1; %>
+                                <% data.forEach(function(user){ %>
+                                <tr>
+                                    <td>
+                                        <%= i++ %>.
+                                    </td>
+                                    <td>
+                                        <%= user.name %>
+                                    </td>
+                                    <td>
+                                        <%= user.phone %>
+                                    </td>
+                                    <td>
+                                        <%= user.address %>
+                                    </td>
+                                    <td>
+                                        <%= user.points %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('partials/footer.ejs') %>
