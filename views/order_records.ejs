@@ -35,14 +35,7 @@
                                             <th>Customer Name</th>
                                             <th>Phone</th>
                                             <th>Date</th>
-                                            <!-- <th>Address</th>
-                                            <th>Items</th>
-                                            <th>Sub Total</th>
-                                            <th>Discount</th>
-                                            <th>Total</th>
-                                            <th>Payment Type</th> -->
                                             <th>Status</th>
-                                            <!-- <th>Comment</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -65,42 +58,21 @@
                                             <td>
                                                 <%= order.orderDate %>
                                             </td>
-                                            <!-- <td>
-                                                <%= order.address %>
-                                            </td>
-                                            <td>
-                                                <%= order.items %>
-                                            </td>
-                                            <td>
-                                                <%= order.sub_total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.discount %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.payment_type %>
-                                            </td> -->
                                             <td>
                                                 <%= order.status %>
                                             </td>
-                                            <!--    <td>
-                                                <%= order.comment %>
-                                            </td> -->
                                             <td>
-                                                <a href="update_order/<%= order.doc_id %>" class="btn btn-warning">
-                                                    <i class="icofont-ui-settings"></i>
+                                                <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
+                                                    <i class="icofont-info"></i>
                                                 </a>
-                                                <form class="d-inline-block"
-                                                    onsubmit="return confirm('Are you sure want to delete?')"
-                                                    method="POST" action="">
-                                                    <input type="hidden" name="id" value="">
-                                                    <button class="btn btn-outline-danger">
-                                                        <i class="icofont-close"></i>
-                                                    </button>
-                                                </form>
+                                            
+                                                <a href="#" class="btn btn-outline-success">
+                                                    <i class="icofont-ui-check"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-outline-danger">
+                                                    <i class="icofont-close"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <% }); %>
@@ -122,14 +94,7 @@
                                             <th>Customer Name</th>
                                             <th>Phone</th>
                                             <th>Date</th>
-                                            <!-- <th>Address</th>
-                                            <th>Items</th>
-                                            <th>Sub Total</th>
-                                            <th>Discount</th>
-                                            <th>Total</th>
-                                            <th>Payment Type</th> -->
                                             <th>Status</th>
-                                            <!-- <th>Comment</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -149,42 +114,21 @@
                                             <td>
                                                 <%= order.phone %>
                                             </td>
-                                            <!--  <td>
-                                                <%= order.address %>
-                                            </td>
-                                            <td>
-                                                <%= order.items %>
-                                            </td>
-                                            <td>
-                                                <%= order.sub_total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.discount %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.payment_type %>
-                                            </td> -->
                                             <td>
                                                 <%= order.status %>
                                             </td>
-                                            <!--  <td>
-                                                <%= order.comment %>
-                                            </td> -->
                                             <td>
-                                                <a href="update_order/<%= order.doc_id %>" class="btn btn-warning">
-                                                    <i class="icofont-ui-settings"></i>
+                                                <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
+                                                    <i class="icofont-info"></i>
                                                 </a>
-                                                <form class="d-inline-block"
-                                                    onsubmit="return confirm('Are you sure want to delete?')"
-                                                    method="POST" action="">
-                                                    <input type="hidden" name="id" value="">
-                                                    <button class="btn btn-outline-danger">
-                                                        <i class="icofont-close"></i>
-                                                    </button>
-                                                </form>
+                                            
+                                                <a href="#" class="btn btn-outline-success">
+                                                    <i class="icofont-ui-check"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-outline-danger">
+                                                    <i class="icofont-close"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <% }); %>
@@ -205,14 +149,8 @@
                                             <th>Reference</th>
                                             <th>Customer Name</th>
                                             <th>Phone</th>
-                                            <!-- <th>Address</th>
-                                            <th>Items</th>
-                                            <th>Sub Total</th>
-                                            <th>Discount</th>
-                                            <th>Total</th>
-                                            <th>Payment Type</th> -->
+                                            <th>Date</th>
                                             <th>Status</th>
-                                            <!-- <th>Comment</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -232,42 +170,24 @@
                                             <td>
                                                 <%= order.phone %>
                                             </td>
-                                            <!-- <td>
-                                                <%= order.address %>
-                                            </td>
                                             <td>
-                                                <%= order.items %>
+                                                <%= order.date %>
                                             </td>
-                                            <td>
-                                                <%= order.sub_total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.discount %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.payment_type %>
-                                            </td> -->
                                             <td>
                                                 <%= order.status %>
                                             </td>
-                                            <!--  <td>
-                                                <%= order.comment %>
-                                            </td> -->
                                             <td>
-                                                <a href="update_order/<%= order.doc_id %>" class="btn btn-warning">
-                                                    <i class="icofont-ui-settings"></i>
+                                                <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
+                                                    <i class="icofont-info"></i>
                                                 </a>
-                                                <form class="d-inline-block"
-                                                    onsubmit="return confirm('Are you sure want to delete?')"
-                                                    method="POST" action="">
-                                                    <input type="hidden" name="id" value="">
-                                                    <button class="btn btn-outline-danger">
-                                                        <i class="icofont-close"></i>
-                                                    </button>
-                                                </form>
+                                            
+                                                <a href="#" class="btn btn-outline-success">
+                                                    <i class="icofont-ui-check"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-outline-danger">
+                                                    <i class="icofont-close"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <% }); %>
@@ -288,14 +208,8 @@
                                             <th>Reference</th>
                                             <th>Customer Name</th>
                                             <th>Phone</th>
-                                            <!-- <th>Address</th>
-                                            <th>Items</th>
-                                            <th>Sub Total</th>
-                                            <th>Discount</th>
-                                            <th>Total</th>
-                                            <th>Payment Type</th> -->
+                                            <th>Date</th>
                                             <th>Status</th>
-                                            <!-- <th>Comment</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -315,42 +229,24 @@
                                             <td>
                                                 <%= order.phone %>
                                             </td>
-                                            <!-- <td>
-                                                <%= order.address %>
-                                            </td>
                                             <td>
-                                                <%= order.items %>
+                                                <%= order.date %>
                                             </td>
-                                            <td>
-                                                <%= order.sub_total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.discount %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.total %> Ks
-                                            </td>
-                                            <td>
-                                                <%= order.payment_type %>
-                                            </td> -->
                                             <td>
                                                 <%= order.status %>
                                             </td>
-                                            <!-- <td>
-                                                <%= order.comment %>
-                                            </td> -->
                                             <td>
-                                                <a href="update_order/<%= order.doc_id %>" class="btn btn-warning">
-                                                    <i class="icofont-ui-settings"></i>
+                                                <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
+                                                    <i class="icofont-info"></i>
                                                 </a>
-                                                <form class="d-inline-block"
-                                                    onsubmit="return confirm('Are you sure want to delete?')"
-                                                    method="POST" action="">
-                                                    <input type="hidden" name="id" value="">
-                                                    <button class="btn btn-outline-danger">
-                                                        <i class="icofont-close"></i>
-                                                    </button>
-                                                </form>
+                                            
+                                                <a href="#" class="btn btn-outline-success">
+                                                    <i class="icofont-ui-check"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-outline-danger">
+                                                    <i class="icofont-close"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <% }); %>

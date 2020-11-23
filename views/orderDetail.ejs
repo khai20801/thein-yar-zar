@@ -1,0 +1,76 @@
+<%- include('partials/header.ejs') %>
+<main class="app-content">
+    <!-- main content -->
+    <div class="app-title">
+      <div>
+        <h1> <i class="icofont-list"></i> Invoice</h1>
+      </div>
+      <ul class="app-breadcrumb breadcrumb side">
+        <a href="../../admin/orders" class="btn btn-outline-primary">
+          <i class="icofont-double-left"></i>
+        </a>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <section class="invoice">
+            <div class="row mb-4">
+              <div class="col-6">
+                <h1>Thein Yar Zar</h1>
+              </div>
+              <div class="col-6">
+                <h5 class="text-right">Date:
+                    <%= data.orderDate %>
+                </h5>
+              </div>
+            </div>
+
+            <div class="row invoice-info">
+              <div class="col-4">From
+                <address><strong>Thein Yar Zar.</strong></address>
+              </div>
+              <div class="col-4">To
+                <address>
+                  <strong><%= data.name %></strong><br>
+                  <%= data.address %> <br>
+                  Phone: <%= data.phone %> </address>
+              </div>
+              <div class="col-4"><b>Invoice #<%= data.ref %>
+                </b><br><br>
+                <b>Total:</b> <%= data.total %> Ks </div>
+            </div>
+            <div class="row">
+              <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th> Product </th>
+                      <th> Ref No </th>
+                      <th> Payment Type </th>
+                      <th> Discount </th>
+                      <th> Subtotal </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> <%= data.items %> </td>
+                      <td> <%= data.ref %> </td>
+                      <td> <%= data.payment_type %> </td>
+                      <td> <%= data.discount %> Ks </td>
+                      <td> <%= data.sub_total %> Ks </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row d-print-none mt-2">
+              <div class="col-12 text-right"><a class="btn btn-primary" href="#"
+                onclick="window.print();return false;" target="_blank"><i class="fa fa-print"></i> Print</a></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+</main>
+<%- include('partials/footer.ejs') %>  

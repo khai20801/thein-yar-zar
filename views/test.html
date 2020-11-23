@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Main CSS-->
+  <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
+  <!-- iconfont CSS -->
+  <link rel="stylesheet" type="text/css" href="../public/icon/icofont/icofont.min.css">
+  <style>
+    .one {
+      border-color: #408BEA;
+      border-left: solid 5px #408bea;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app-content">
+    <!-- main content -->
+    <div class="app-title">
+      <div>
+        <h1> <i class="icofont-list"></i> Invoice</h1>
+      </div>
+      <ul class="app-breadcrumb breadcrumb side">
+        <a href="order_list.php" class="btn btn-outline-primary">
+          <i class="icofont-double-left"></i>
+        </a>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <section class="invoice">
+            <div class="row mb-4">
+              <div class="col-6">
+                <h1>Thein Yar Zar</h1>
+              </div>
+              <div class="col-6">
+                <h5 class="text-right">Date:
+                  20/12/2020
+                </h5>
+              </div>
+            </div>
+
+            <div class="row invoice-info">
+              <div class="col-4">From
+                <address><strong>Thein Yar Zar.</strong></address>
+              </div>
+              <div class="col-4">To
+                <address>
+                  <strong>Hein  Min Htet</strong><br>
+                  Nay Pyi Taw <br>
+                  Phone: 097845212321 </address>
+              </div>
+              <div class="col-4"><b>Invoice #451446154
+                </b><br><br>
+                <b>Total:</b> 500000 Ks </div>
+            </div>
+            <div class="row">
+              <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th> No </th>
+                      <th> Product </th>
+                      <th> Ref No </th>
+                      <th> Discount </th>
+                      <th> Subtotal </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> 1. </td>
+                      <td> ကြာဇံကြော်*1 </td>
+                      <td> JXj1a5 </td>
+                      <td> 20000 ks </td>
+                      <td> 50000 Ks </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row d-print-none mt-2">
+              <div class="col-12 text-right"><a class="btn btn-primary" href="javascript:window.print();"
+                  target="_blank"><i class="fa fa-print"></i> Print</a></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- scripts -->
+  <script src="../public/js/jquery-3.3.1.min.js"></script>
+  <script src="../public/js/popper.min.js"></script>
+  <script src="../public/js/bootstrap.min.js"></script>
+</body>
+
+</html>
