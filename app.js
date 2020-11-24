@@ -909,7 +909,6 @@ app.post('/order', function(req, res) {
         ref: generateRandom(6),
         orderDate: orderDate,
         status: "pending",
-        comment: "",
     }
 
 
@@ -1373,16 +1372,20 @@ const showOrder = async (sender_psid, order_ref) => {
         snapshot.forEach(doc => {
             order.ref = doc.data().ref;
             order.status = doc.data().status;
-            order.comment = doc.data().comment;
+            order.items = doc.data().items;
+            order.total = doc.data().total;
         });
 
 
         let response1 = { "text": `Your order ${order.ref} is ${order.status}.` };
-        let response2 = { "text": `Seller message: ${order.comment}.` };
-        let response3 = { "text": `You have remaining ${cust_points} point(s)` };
+        let response2 = { "text": `Order Summery: ${order.items}.` };
+        let response3 = { "text": `Total Price: ${order.total} Ks` };
+        let response4 = { "text": `You have remaining ${cust_points} point(s)` };
         callSend(sender_psid, response1).then(() => {
             return callSend(sender_psid, response2).then(() => {
-                return callSend(sender_psid, response3)
+                return callSend(sender_psid, response3).then(() => {
+                    return callSend(sender_psid, response4)
+                });
             });
         });
 
@@ -1555,41 +1558,6 @@ const showJuice = (sender_psid) => {
 endshop
 **************/
 
-const textReply = (sender_psid) => {
-    let response = { "text": "You sent text message" };
-    callSend(sender_psid, response);
-}
-
-
-const buttonReply = (sender_psid) => {
-
-    let response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Are you OK?",
-                    "image_url": "https://www.mindrops.com/images/nodejs-image.png",
-                    "buttons": [{
-                            "type": "postback",
-                            "title": "Yes!",
-                            "payload": "yes",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "No!",
-                            "payload": "no",
-                        }
-                    ],
-                }]
-            }
-        }
-    }
-
-
-    callSend(sender_psid, response);
-}
 
 const showButtonReplyYes = (sender_psid) => {
     let response = { "text": "You clicked YES" };
@@ -1601,57 +1569,6 @@ const showButtonReplyNo = (sender_psid) => {
     callSend(sender_psid, response);
 }
 
-const thankyouReply = (sender_psid, name, img_url) => {
-    let response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Thank you! " + name,
-                    "image_url": img_url,
-                    "buttons": [{
-                            "type": "postback",
-                            "title": "Yes!",
-                            "payload": "yes",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "No!",
-                            "payload": "no",
-                        }
-                    ],
-                }]
-            }
-        }
-    }
-    callSend(sender_psid, response);
-}
-
-function testDelete(sender_psid) {
-    let response;
-    response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Delete Button Test",
-                    "buttons": [{
-                            "type": "web_url",
-                            "title": "enter",
-                            "url": "https://fbstarter.herokuapp.com/test/",
-                            "webview_height_ratio": "full",
-                            "messenger_extensions": true,
-                        },
-
-                    ],
-                }]
-            }
-        }
-    }
-    callSendAPI(sender_psid, response);
-}
 
 const defaultReply = (sender_psid) => {
     let response1 = { "text": "To test text reply, type 'text'" };
