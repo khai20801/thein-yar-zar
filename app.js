@@ -1074,14 +1074,9 @@ const handleMessage = (sender_psid, received_message) => {
             case "start":
                 startGreeting(sender_psid);
                 break;
-            case "text":
-                textReply(sender_psid);
-                break;
-            case "button":
-                buttonReply(sender_psid);
-                break;
-            case "webview":
-                webviewTest(sender_psid);
+            case "check-order":
+                current_question = "q4";
+                botQuestions(current_question, sender_psid);
                 break;
 
             default:
@@ -1571,16 +1566,10 @@ const showButtonReplyNo = (sender_psid) => {
 
 
 const defaultReply = (sender_psid) => {
-    let response1 = { "text": "To test text reply, type 'text'" };
-    let response2 = { "text": "To test quick reply, type 'quick'" };
-    let response3 = { "text": "To test button reply, type 'button'" };
-    let response4 = { "text": "To test webview, type 'webview'" };
+    let response1 = { "text": "To check order, please type 'check-order'" };
+    let response2 = { "text": "To start bot, please type 'start'" };
     callSend(sender_psid, response1).then(() => {
-        return callSend(sender_psid, response2).then(() => {
-            return callSend(sender_psid, response3).then(() => {
-                return callSend(sender_psid, response4);
-            });
-        });
+        return callSend(sender_psid, response2);
     });
 }
 
