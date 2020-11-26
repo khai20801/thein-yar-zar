@@ -24,10 +24,10 @@ app.use(express.static(__dirname + '/public'));
 
 
 const bot_questions = {
-    "q1": "please enter your full name",
-    "q2": "please enter your phone number",
-    "q3": "please enter your address",
-    "q4": "please enter your order reference number"
+    "q1": "Please enter your full name",
+    "q2": "Please enter your phone number",
+    "q3": "Please enter your address",
+    "q4": "Please enter your order reference number"
 }
 
 let sess;
@@ -901,6 +901,7 @@ app.post('/order', function(req, res) {
         name: req.body.name,
         phone: req.body.phone,
         address: req.body.address,
+        note: req.body.note,
         items: req.body.items,
         sub_total: parseInt(req.body.sub_total),
         discount: parseInt(req.body.discount),
@@ -928,7 +929,9 @@ app.post('/order', function(req, res) {
 
         db.collection('users').doc(user_id).update(update_data).then((success) => {
             console.log('POINT UPDATE:');
-            let text = "Thank you. Your order has been confirmed. Your order reference number is " + data.ref;
+            let text = "Thank you. Order ကိုအတည်ပြုပြီးပါပြီ."+ "\u000A";
+            text += " မှာယူပြီး မိနစ်သုံးဆယ်အတွင်းရပါမည် "+ "\u000A";
+            text += "Your booking reference number is: " + data.ref;
             let response = { "text": text };
             callSend(user_id, response);
 
@@ -1004,7 +1007,7 @@ function handleQuickReply(sender_psid, received_message) {
             current_question = "q4";
             botQuestions(current_question, sender_psid);
             break;
-        case "shop":
+        case "all-fd":
             shopMenu(sender_psid);
             break;
         case "menu-list":
@@ -1069,16 +1072,19 @@ const handleMessage = (sender_psid, received_message) => {
         user_message = user_message.toLowerCase();
 
         switch (user_message) {
-
-
+            case "hi":
+            startGreeting(sender_psid);
+            break;
             case "start":
                 startGreeting(sender_psid);
+                break;
+            case "menu":
+                showMenuList(sender_psid);
                 break;
             case "check-order":
                 current_question = "q4";
                 botQuestions(current_question, sender_psid);
                 break;
-
             default:
                 defaultReply(sender_psid);
         }
@@ -1088,44 +1094,6 @@ const handleMessage = (sender_psid, received_message) => {
 
 }
 
-/*********************************************
-Function to handle when user send attachment
-**********************************************/
-
-
-const handleAttachments = (sender_psid, attachments) => {
-
-    console.log('ATTACHMENT', attachments);
-
-
-    let response;
-    let attachment_url = attachments[0].payload.url;
-    response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Is this the right picture?",
-                    "subtitle": "Tap a button to answer.",
-                    "image_url": attachment_url,
-                    "buttons": [{
-                            "type": "postback",
-                            "title": "Yes!",
-                            "payload": "yes-attachment",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "No!",
-                            "payload": "no-attachment",
-                        }
-                    ],
-                }]
-            }
-        }
-    }
-    callSend(sender_psid, response);
-}
 
 
 /*********************************************
@@ -1139,30 +1107,16 @@ const handlePostback = (sender_psid, received_postback) => {
 
     console.log('BUTTON PAYLOAD', payload);
 
-
-    if (payload.startsWith("Doctor:")) {
-        let doctor_name = payload.slice(7);
-        console.log('SELECTED DOCTOR IS: ', doctor_name);
-        userInputs[user_id].doctor = doctor_name;
-        console.log('TEST', userInputs);
-        firstOrFollowUp(sender_psid);
-    } else {
-
-        switch (payload) {
-            case "yes":
-                showButtonReplyYes(sender_psid);
-                break;
-            case "no":
-                showButtonReplyNo(sender_psid);
-                break;
-            default:
-                defaultReply(sender_psid);
-        }
-
+    switch (payload) {
+        case "get_started":
+            startGreeting(sender_psid);
+            break;
+        case "no":
+            showButtonReplyNo(sender_psid);
+            break;
+        default:
+            defaultReply(sender_psid);
     }
-
-
-
 }
 
 
@@ -1175,35 +1129,6 @@ const generateRandom = (length) => {
     }
     return result;
 }
-
-
-
-
-function webviewTest(sender_psid) {
-    let response;
-    response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Click to open webview?",
-                    "buttons": [{
-                            "type": "web_url",
-                            "title": "webview",
-                            "url": APP_URL + "webview/" + sender_psid,
-                            "webview_height_ratio": "full",
-                            "messenger_extensions": true,
-                        },
-
-                    ],
-                }]
-            }
-        }
-    }
-    callSendAPI(sender_psid, response);
-}
-
 
 
 
@@ -1252,21 +1177,25 @@ const showMenu = async (sender_psid) => {
                 "content_type": "text",
                 "title": title,
                 "payload": "register",
+                "image_url":"https://i.imgur.com/4M4LQ6x.jpg"
             }, 
             {
                 "content_type": "text",
-                "title": "Shop",
-                "payload": "shop",
+                "title": "All Foods and Drinks",
+                "payload": "all-fd",
+                "image_url":"https://i.imgur.com/ntip7Ic.png"
             },
             {
                 "content_type": "text",
                 "title": "Menu List",
                 "payload": "menu-list",
+                "image_url":"https://i.imgur.com/t3dDjS9.png"
             },
             {
                 "content_type": "text",
                 "title": "My Order",
                 "payload": "check-order",
+                "image_url":"https://i.imgur.com/QYeFrSK.png"
             }
 
         ]
@@ -1396,11 +1325,11 @@ const shopMenu = (sender_psid) => {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Shopplus",
-                    "image_url": "https://img.favpng.com/8/22/6/toy-shop-retail-toys-r-us-clip-art-png-favpng-Q5kvdVUxgvDQT9M9vmsHzByQY.jpg",
+                    "title": "All Foods and Drinks",
+                    "image_url": "https://i.imgur.com/ntip7Ic.png",
                     "buttons": [{
                             "type": "web_url",
-                            "title": "Shop Now",
+                            "title": "View",
                             "url": APP_URL + "shop/",
                             "webview_height_ratio": "full",
                             "messenger_extensions": true,
@@ -1422,18 +1351,22 @@ const showMenuList = (sender_psid) => {
             "content_type": "text",
             "title": "Breakfast Food",
             "payload": "breakfast-food",
+            "image_url":"https://i.imgur.com/IBn8L5w.png"
         }, {
             "content_type": "text",
             "title": "Lunch Food",
             "payload": "lunch-food",
+            "image_url":"https://i.imgur.com/4CgknJW.png"
         }, {
             "content_type": "text",
             "title": "Chinese Food",
             "payload": "chinese-food",
+            "image_url":"https://i.imgur.com/fCYPlIW.png"
         }, {
             "content_type": "text",
             "title": "Juice",
             "payload": "juice",
+            "image_url":"https://i.imgur.com/clhBWtd.png"
         }]
     };
     callSend(sender_psid, response);
@@ -1449,7 +1382,7 @@ const showBreakfastFood = (sender_psid) => {
                 "template_type": "generic",
                 "elements": [{
                     "title": "Breakfast Food",
-                    "image_url": "https://img.favpng.com/8/22/6/toy-shop-retail-toys-r-us-clip-art-png-favpng-Q5kvdVUxgvDQT9M9vmsHzByQY.jpg",
+                    "image_url": "https://i.imgur.com/g56xn3n.jpg",
                     "buttons": [{
                             "type": "web_url",
                             "title": "View",
@@ -1476,7 +1409,7 @@ const showLunchFood = (sender_psid) => {
                 "template_type": "generic",
                 "elements": [{
                     "title": "Lunch Food",
-                    "image_url": "https://img.favpng.com/8/22/6/toy-shop-retail-toys-r-us-clip-art-png-favpng-Q5kvdVUxgvDQT9M9vmsHzByQY.jpg",
+                    "image_url": "https://i.imgur.com/4CgknJW.png",
                     "buttons": [{
                             "type": "web_url",
                             "title": "View",
@@ -1503,7 +1436,7 @@ const showChineseFood = (sender_psid) => {
                 "template_type": "generic",
                 "elements": [{
                     "title": "Chinese Food",
-                    "image_url": "https://img.favpng.com/8/22/6/toy-shop-retail-toys-r-us-clip-art-png-favpng-Q5kvdVUxgvDQT9M9vmsHzByQY.jpg",
+                    "image_url": "https://i.imgur.com/XyYl1DF.jpg",
                     "buttons": [{
                             "type": "web_url",
                             "title": "View",
@@ -1530,7 +1463,7 @@ const showJuice = (sender_psid) => {
                 "template_type": "generic",
                 "elements": [{
                     "title": "Juice",
-                    "image_url": "https://img.favpng.com/8/22/6/toy-shop-retail-toys-r-us-clip-art-png-favpng-Q5kvdVUxgvDQT9M9vmsHzByQY.jpg",
+                    "image_url": "https://i.imgur.com/jDddJzk.jpg",
                     "buttons": [{
                             "type": "web_url",
                             "title": "View",

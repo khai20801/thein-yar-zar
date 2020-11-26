@@ -63,14 +63,14 @@
                                             </td>
                                             <td>
                                                 <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
-                                                    <i class="icofont-info"></i>
+                                                    <i class="icofont-info" title="Order Detail"></i>
                                                 </a>
                                                 <!-- processing order button -->
                                                 <form class="d-inline-block" onsubmit="return confirm('Are you sure want to process?')" method="post" action="update_order_process">
 
                                                     <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
 
-                                                    <button class="btn btn-outline-secondary">
+                                                    <button class="btn btn-outline-secondary" title="Process Order">
                                                         <i class="icofont-recycle"></i>
                                                     </button>
 
@@ -81,7 +81,7 @@
 
                                                     <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
 
-                                                    <button class="btn btn-outline-success">
+                                                    <button class="btn btn-outline-success" title="Complete Order">
                                                         <i class="icofont-ui-check"></i>
                                                     </button>
                                                 </form>
@@ -90,7 +90,7 @@
 
                                                     <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
 
-                                                    <button class="btn btn-outline-danger">
+                                                    <button class="btn btn-outline-danger" title="Cancel Order">
                                                         <i class="icofont-close"></i>
                                                     </button>
                                                 </form>
@@ -143,7 +143,7 @@
                                             </td>
                                             <td>
                                                 <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
-                                                    <i class="icofont-info"></i>
+                                                    <i class="icofont-info" title="Order Detail"></i>
                                                 </a>
                                             
                                                 <!-- completed order button -->
@@ -151,7 +151,7 @@
 
                                                     <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
 
-                                                    <button class="btn btn-outline-success">
+                                                    <button class="btn btn-outline-success" title="Complete Order">
                                                         <i class="icofont-ui-check"></i>
                                                     </button>
                                                 </form>
@@ -161,7 +161,7 @@
 
                                                     <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
 
-                                                    <button class="btn btn-outline-danger">
+                                                    <button class="btn btn-outline-danger" title="Cancel Order">
                                                         <i class="icofont-close"></i>
                                                     </button>
                                                 </form>
@@ -214,7 +214,7 @@
                                             </td>
                                             <td>
                                                 <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
-                                                    <i class="icofont-info"></i>
+                                                    <i class="icofont-info" title="Order Detail"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -265,7 +265,7 @@
                                             </td>
                                             <td>
                                                 <a href="orderDetail/<%= order.doc_id %>" class="btn btn-outline-info">
-                                                    <i class="icofont-info"></i>
+                                                    <i class="icofont-info" title="Order Detail"></i>
                                                 </a>
                                             
                                                 <!-- delete order button -->
@@ -273,7 +273,7 @@
 
                                                     <input type="hidden" name="doc_id" value="<%= order.doc_id %>">
 
-                                                    <button class="btn btn-danger">
+                                                    <button class="btn btn-danger" title="Delete Order">
                                                         <i class="icofont-trash"></i>
                                                     </button>
                                                 </form>
